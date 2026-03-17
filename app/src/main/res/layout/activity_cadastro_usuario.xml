@@ -31,6 +31,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textCadastroUsuarioTitle"/>
 
+
+
     <EditText
         android:id="@+id/registerEmailEditText"
         android:layout_width="0dp"
@@ -42,14 +44,27 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
-        android:id="@+id/registerPasswordEditText"
+        android:id="@+id/registerCpfEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Senha"
-        android:inputType="textPassword"
+        android:hint="CPF"
+        android:inputType="number"
+        android:maxLength="11"
         app:layout_constraintTop_toBottomOf="@id/registerEmailEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/registerPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerEmailEditText" />
 
     <EditText
         android:id="@+id/registerConfirmPasswordEditText"
@@ -57,9 +72,10 @@
         android:layout_height="wrap_content"
         android:hint="Confirmar Senha"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/registerPasswordEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswordEditText" />
 
     <Button
         android:id="@+id/salvarButton"
