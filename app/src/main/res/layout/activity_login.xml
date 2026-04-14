@@ -6,7 +6,7 @@
     android:id="@+id/fragment_login_usuario"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/background_soft"
     tools:context=".ui.login.LoginActivity">
 
     <!-- CARD PRINCIPAL -->
@@ -15,8 +15,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,19 @@
             android:layout_height="wrap_content"
             android:padding="24dp">
 
+            <!-- LOGO -->
+
             <!-- TÍTULO -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/gasosa_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/text_login_title"
                 android:layout_width="wrap_content"
@@ -35,52 +47,76 @@
                 android:text="Login"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#000"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/orange_primary"
+                app:layout_constraintTop_toBottomOf="@id/logo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- EMAIL -->
-            <EditText
-                android:id="@+id/edit_text_email"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_email"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="32dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Email"
-                android:padding="12dp"
-                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/orange_primary"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
                 app:layout_constraintTop_toBottomOf="@id/text_login_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:textColor="@color/text_dark"
+                    android:inputType="textEmailAddress"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- SENHA -->
-            <EditText
-                android:id="@+id/edit_text_password"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_password"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Senha"
-                android:padding="12dp"
-                android:inputType="textPassword"
-                app:layout_constraintTop_toBottomOf="@id/edit_text_email"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/orange_primary"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:passwordToggleEnabled="true"
+                app:layout_constraintTop_toBottomOf="@id/layout_email"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- BOTÃO -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Senha"
+                    android:textColor="@color/text_dark"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- BOTÃO LOGIN -->
             <Button
                 android:id="@+id/button_login"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="24dp"
-                android:text="Login"
-                android:textColor="#FFF"
-                android:backgroundTint="#000000"
+                android:text="Entrar"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 android:textAllCaps="false"
-                app:layout_constraintTop_toBottomOf="@id/edit_text_password"
+                android:backgroundTint="@color/orange_dark"
+                app:layout_constraintTop_toBottomOf="@id/layout_password"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <!-- CADASTRO -->
             <TextView
@@ -89,27 +125,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Não tem conta? Cadastre-se"
-                android:textColor="#666"
+                android:textColor="@color/orange_dark"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/button_login"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
+            <!-- GOOGLE -->
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnGoogleSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Login com Google"
                 app:layout_constraintTop_toBottomOf="@id/registerLink"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints" />
-
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
