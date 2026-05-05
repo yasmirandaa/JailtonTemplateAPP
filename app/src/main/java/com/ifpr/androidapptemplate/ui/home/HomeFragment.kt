@@ -15,6 +15,7 @@ import android.widget.*
 import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.location.Location
+import android.net.Uri
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatDelegate
@@ -190,10 +191,21 @@ class HomeFragment : Fragment() {
                         val itemView = LayoutInflater.from(container.context)
                             .inflate(R.layout.item_template, container, false)
 
+                        val btnRota = itemView.findViewById<Button>(R.id.btnRota)
                         val imageView = itemView.findViewById<ImageView>(R.id.item_image)
                         val enderecoView = itemView.findViewById<TextView>(R.id.item_endereco)
+                        val precoView = itemView.findViewById<TextView>(R.id.precoItemEditText)
 
+                        precoView.text = "Preço: ${item.preco ?: "Não informado"}"
                         enderecoView.text = "Endereço: ${item.endereco ?: "Não informado"}"
+                        
+                        btnRota.setOnClickListener {
+                            if (!item.endereco.isNullOrEmpty()) {
+                                abrirRotaParaEndereco(item.endereco!!)
+                            } else {
+                                Toast.makeText(container.context, "Endereço não disponível", Toast.LENGTH_SHORT).show()
+                            }
+                        }
 
                         if (!item.imageUrl.isNullOrEmpty()) {
                             Glide.with(container.context).load(item.imageUrl).into(imageView)
@@ -214,5 +226,17 @@ class HomeFragment : Fragment() {
                 Toast.makeText(container.context, "Erro ao carregar dados", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    private fun abrirRotaParaEndereco(endereco: String) {
+        val uri = "google.navigation:q=${Uri.encode(endereco)}"
+        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(uri))
+
+        intent.setPackage("com.google.android.apps.maps")
+
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(uri)))
+        }
     }
 }
